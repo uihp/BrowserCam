@@ -1,0 +1,9 @@
+module.exports = {
+  sourceMaps: true,
+  inputSourceMap: false,
+  presets: ['@babel/preset-env'],
+  plugins: [
+    ["@babel/plugin-proposal-decorators", { "version": "2023-11" }],
+    '@babel/plugin-syntax-import-attributes'
+  ]
+}

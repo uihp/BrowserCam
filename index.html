@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" href="assets/logo.png" type="image/x-icon" />
+  <link rel="manifest" href="assets/manifest.json" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif+SC:wght@200..900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+TC:wght@100..900&family=Noto+Sans+SC:wght@100..900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" />
+  <link rel="stylesheet" href="lib/index.css" />
+  <script src="vendors/polyfill/custom-elements.min.js"></script>
+  <script type="module" src="lib/material.js"></script>
+  <script type="module" src="lib/tailwind.js"></script>
+  <script>window.__HOST_IP__ = '192.168.31.150'</script>
+  <title>Browser Camera</title>
+</head>
+
+<body class="bg-[var(--md-sys-color-surface-container)]">
+  <browsercam-app id="app" class="h-full"></browsercam-app>
+  <script type="module" src="modules/app.js"></script>
+</body>
+
+</html>
