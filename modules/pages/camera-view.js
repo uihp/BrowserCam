@@ -16,7 +16,7 @@ customElements.define('camera-view', class extends Component {
       this.cameraVideo.srcObject = stream
       this.cameraVideo.play()
       const [track] = stream.getTracks()
-      peerConn.addTrack(this.track = track)
+      this.sender = peerConn.addTrack(this.track = track)
     })
     const sessionDesc = await peerConn.createOffer()
     await peerConn.setLocalDescription(sessionDesc)
@@ -28,8 +28,9 @@ customElements.define('camera-view', class extends Component {
   }
   switch() {
     this.isRear = !this.isRear
+    peerConn.removeTrack(this.sender)
     this.remount()
-  }  
+  }
   render() {
     return html`
       ${this.cameraVideo = html`<video class="h-full w-full" autoplay muted></video>`.elem}

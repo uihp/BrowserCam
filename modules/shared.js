@@ -19,6 +19,7 @@ export const websocket = new Proxy({
       this.connected.resolve()
       this.connected = Promise.withResolvers()
     }, { signal: this.listen.signal })
+    this.value.addEventListener('close', e => alert(`websocket closed: ${e.code} ${e.reason} ${e.wasClean}`), { signal: this.listen.signal })
     setTimeout(() => this.value.readyState !== WebSocket.OPEN && this.connect(), 200)
   }
 }, {
