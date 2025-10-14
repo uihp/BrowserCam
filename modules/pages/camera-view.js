@@ -10,17 +10,16 @@ customElements.define('camera-view', class extends Component {
   isRear = false
   preparing = websocket.connected.promise
   async onMounted() {
-    await window.navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { exact: this.isRear ? 'environment' : 'user' } }
-    }).then(stream => {
-      this.cameraVideo.srcObject = stream
-      this.cameraVideo.play()
-      const [track] = stream.getTracks()
+    const stream = await window.navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: this.isRear ? 'environment' : 'user' } } })
+    this.cameraVideo.srcObject = stream
+    this.cameraVideo.play()
+    const [track] = stream.getTracks()
+    if (!this.sender) {
       this.sender = peerConn.addTrack(this.track = track)
-    })
-    const sessionDesc = await peerConn.createOffer()
-    await peerConn.setLocalDescription(sessionDesc)
-    websocket.send(JSON.stringify(sessionDesc))
+      const sessionDesc = await peerConn.createOffer()
+      await peerConn.setLocalDescription(sessionDesc)
+      websocket.send(JSON.stringify(sessionDesc))
+    } else this.sender.replaceTrack(this.track = track)
   }
   zoom() {
     const zoom = this.zoomSlider.value > 1 ? (this.zoomSlider.value-1)*8+1 : this.zoomSlider.value
@@ -28,7 +27,6 @@ customElements.define('camera-view', class extends Component {
   }
   switch() {
     this.isRear = !this.isRear
-    peerConn.removeTrack(this.sender)
     this.remount()
   }
   render() {
