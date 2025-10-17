@@ -1,9 +1,5 @@
 export default {
-  content: ["index.html", "modules/**/*.js"],
-  theme: {
-    extend: {}
-  },
-  plugins: [],
+  content: ["modules/**/*.js"],
   darkMode: 'class',
   variants: {
     backgroundColor: [

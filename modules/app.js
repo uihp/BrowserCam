@@ -1,9 +1,9 @@
-import Component, { html, css } from 'radical-web/component'
+import Component, { html, css } from '@radical-web/practice/component'
 import '~/layouts/main-content'
 
 window.addEventListener('load', () => 'serviceWorker' in navigator && navigator.serviceWorker.register('/sw.js'))
 
-customElements.define('browsercam-app', class extends Component {
+customElements.define('rtcam-frontend-app', class extends Component {
   static styles = css`
     :host {
       display: block;

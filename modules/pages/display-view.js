@@ -1,4 +1,4 @@
-import Component, { html, css } from 'radical-web/component'
+import Component, { html, css } from '@radical-web/practice/component'
 import { websocket, peerConn } from '~/shared'
 
 customElements.define('display-view', class extends Component {

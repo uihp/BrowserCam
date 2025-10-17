@@ -15,13 +15,12 @@
   <link rel="stylesheet" href="lib/index.css" />
   <script src="vendors/polyfill/custom-elements.min.js"></script>
   <script type="module" src="lib/material.js"></script>
-  <script type="module" src="lib/tailwind.js"></script>
   <script>window.__HOST_IP__ = '192.168.31.150'</script>
   <title>Browser Camera</title>
 </head>
 
-<body class="bg-[var(--md-sys-color-surface-container)]">
-  <browsercam-app id="app" class="h-full"></browsercam-app>
+<body>
+  <rtcam-frontend-app id="app" class="h-full"></rtcam-frontend-app>
   <script type="module" src="modules/app.js"></script>
 </body>
 

@@ -4,6 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@radical-web/practice': link:C:/Users/PLS/AppData/Local/pnpm/global/5/node_modules/@radical-web/practice
+  '@radical-web/global-module': link:C:/Users/PLS/AppData/Local/pnpm/global/5/node_modules/@radical-web/global-module
+
 importers:
 
   .:
@@ -11,6 +15,12 @@ importers:
       '@material/web':
         specifier: ^2.4.0
         version: 2.4.0
+      '@radical-web/global-module':
+        specifier: link:C:/Users/PLS/AppData/Local/pnpm/global/5/node_modules/@radical-web/global-module
+        version: link:C:/Users/PLS/AppData/Local/pnpm/global/5/node_modules/@radical-web/global-module
+      '@radical-web/practice':
+        specifier: link:C:/Users/PLS/AppData/Local/pnpm/global/5/node_modules/@radical-web/practice
+        version: link:C:/Users/PLS/AppData/Local/pnpm/global/5/node_modules/@radical-web/practice
     devDependencies:
       '@babel/core':
         specifier: ^7.28.4

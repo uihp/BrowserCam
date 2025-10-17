@@ -11,7 +11,7 @@
     "description": "Browser camera with WebRTC",
     "icons": [
         {
-            "src": "./apple-touch-icon.png",
+            "src": "./touch-icon.png",
             "sizes": "256x256",
             "type": "image/png"
         }
