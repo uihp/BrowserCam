@@ -40,8 +40,11 @@ app.websocket('/signal')(signal)
 
 ## Usage
 Build: `pnpm i && pnpm build`
+
 Mount it on `nginx` or any other web server at `/` with **HTTPS enabled**
+
 Open the site and use the cam
+
 run the code and see the stream:
 ```python
 import cv2
