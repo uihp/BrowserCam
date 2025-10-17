@@ -3,7 +3,7 @@
 
 Use phone or any devices with browser supports [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) and stream your camera via it
 
-# Signaling
+## Signaling
 It using WebSocket with JSON, message format below:
 
 SDP Exchange (Offer/Answer): same as `RTCSessionDescriptionInit`, `{ type: "offer/anwser", sdp: "<SDP>" }`
@@ -38,7 +38,7 @@ app = FastAPI()
 app.websocket('/signal')(signal)
 ```
 
-# Usage
+## Usage
 Build: `pnpm i && pnpm build`
 Mount it on `nginx` or any other web server at `/` with **HTTPS enabled**
 Open the site and use the cam
