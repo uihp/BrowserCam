@@ -9,7 +9,7 @@ customElements.define('camera-view', class extends Component {
     }`
   isRear = false
   async onMounted() {
-    await websocket.connected.promise
+    if (!this.sender) await websocket.connected.promise
     const stream = await window.navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: this.isRear ? 'environment' : 'user' } } })
     this.cameraVideo.srcObject = stream
     this.cameraVideo.play()
