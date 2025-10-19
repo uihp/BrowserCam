@@ -5,6 +5,20 @@ export const globalPromises = new Map()
 export const globalResolvers = new Map()
 export const globalComponents = new Map()
 
+export const peerConn = new Proxy({
+  value: new RTCPeerConnection(),
+  reconnect() {
+    this.value = new RTCPeerConnection()
+    websocket.connect()
+  }
+}, {
+  get(target, prop, receiver) {
+    let val = Reflect.get(target.value, prop, target.value)
+    if (typeof val === 'function') val = val.bind(target.value)
+    return val ?? Reflect.get(target, prop, receiver)
+  }
+})
+
 export const websocket = new Proxy({
   value: {},
   listen: new AbortController(),
@@ -16,6 +30,20 @@ export const websocket = new Proxy({
     this.value = new WebSocket(SIGNAL_URL)
     this.value.addEventListener('error', () => this.connect(), { signal: this.listen.signal })
     this.value.addEventListener('open', () => {
+      peerConn.addEventListener('icecandidate', ({ candidate }) => {
+        this.value.send(JSON.stringify({ type: 'candidate', candidate}))
+      })
+      this.value.addEventListener('message', async event => {
+        const message = JSON.parse(event.data)
+        if (message.type !== 'answer') return
+        await peerConn.setRemoteDescription(new RTCSessionDescription(message))
+      })
+      this.value.addEventListener('message', event => {
+        const message = JSON.parse(event.data)
+        if (message.type !== 'candidate') return
+        if (!message.candidate) return
+        peerConn.addIceCandidate(new RTCIceCandidate(message.candidate))
+      })
       this.connected.resolve()
       this.connected = Promise.withResolvers()
     }, { signal: this.listen.signal })
@@ -29,22 +57,5 @@ export const websocket = new Proxy({
     return val ?? Reflect.get(target, prop, receiver)
   }
 })
-websocket.connect()
 
-export const peerConn = new RTCPeerConnection()
-websocket.connected.promise.then(() => {
-  peerConn.addEventListener('icecandidate', ({ candidate }) => {
-    websocket.send(JSON.stringify({ type: 'candidate', candidate}))
-  })
-  websocket.addEventListener('message', async event => {
-    const message = JSON.parse(event.data)
-    if (message.type !== 'answer') return
-    await peerConn.setRemoteDescription(new RTCSessionDescription(message))
-  })
-  websocket.addEventListener('message', event => {
-    const message = JSON.parse(event.data)
-    if (message.type !== 'candidate') return
-    if (!message.candidate) return
-    peerConn.addIceCandidate(new RTCIceCandidate(message.candidate))
-  })
-})
+websocket.connect()

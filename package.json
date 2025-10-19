@@ -41,6 +41,6 @@
   "dependencies": {
     "@material/web": "^2.4.0",
     "@radical-web/global-module": "^0.1.2",
-    "@radical-web/practice": "^0.0.3"
+    "@radical-web/practice": "^0.0.6"
   }
 }
