@@ -1,4 +1,4 @@
-import Component, { html, css } from '@radical-web/practice/component'
+import Component, { html, css } from '@/component'
 import '~/layouts/main-content'
 
 window.addEventListener('load', () => 'serviceWorker' in navigator && navigator.serviceWorker.register('/sw.js'))
@@ -14,4 +14,4 @@ customElements.define('rtcam-frontend-app', class extends Component {
   }
 })
 
-// alert('[VI]Version: {version} - built on {date}[/VI]')
+alert('[VI]Version: {version} - built on {date}[/VI]')

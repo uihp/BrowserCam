@@ -1,4 +1,4 @@
-import Component, { html, css } from '@radical-web/practice/component'
+import Component, { html, css } from '@/component'
 import { websocket, peerConn } from '~/shared'
 
 customElements.define('camera-view', class extends Component {

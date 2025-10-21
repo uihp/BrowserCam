@@ -1,5 +1,5 @@
-import Component, { html } from '@radical-web/practice/component'
-import '@radical-web/practice/history-router'
+import Component, { html } from '@/component'
+import '@/history-router'
 import '~/pages/camera-view'
 import '~/pages/display-view'
 
